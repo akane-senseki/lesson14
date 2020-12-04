@@ -41,7 +41,7 @@ public class EmployeesUpdateServlet extends HttpServlet {
         if (_token != null && _token.equals(request.getSession().getId())) {
             EntityManager em = DBUtil.createEntityManager();
 
-            Employee e = em.find(Employee.class, (Integer) (request.getSession().getAttribute("employee_id")));
+            Employee e = em.find(Employee.class, (Integer)(request.getSession().getAttribute("employee_id")));
 
             //現在の値と異なる社員番号が入力されていたら重複チェックを行う指定をする
             Boolean codeDuplicateCheckFlag = true;
