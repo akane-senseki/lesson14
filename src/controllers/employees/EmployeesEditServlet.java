@@ -37,7 +37,7 @@ public class EmployeesEditServlet extends HttpServlet {
         Employee e = em.find(Employee.class, Integer.parseInt(request.getParameter("id")));
         em.close();
 
-        request.setAttribute("enployee", e);
+        request.setAttribute("employee", e);
         request.setAttribute("_token", request.getSession().getId());
         request.getSession().setAttribute("employee_id", e.getId());
 
