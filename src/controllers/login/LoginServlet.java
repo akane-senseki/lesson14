@@ -94,7 +94,7 @@ public class LoginServlet extends HttpServlet {
             rd.forward(request, response);
         }else{
             //認証できたらログイン状態にしてトップページへリダイレクト
-            request.getSession().setAttribute("loguin_employee", e);
+            request.getSession().setAttribute("login_employee", e);
 
             request.getSession().setAttribute("flush", "ログインしました。");
             response.sendRedirect(request.getContextPath()+"/");
