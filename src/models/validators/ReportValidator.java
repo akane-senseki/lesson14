@@ -19,6 +19,16 @@ public class ReportValidator {
             errors.add(content_error);
         }
 
+        String attendance_at_error = _validateAttendance_at(r.getAttendance_at());
+        if(!attendance_at_error.equals("")){
+            errors.add(attendance_at_error);
+        }
+
+        String leave_work_at_error = _validateLeave_work_at(r.getLeave_work_at());
+        if(!leave_work_at_error.equals("")){
+            errors.add(leave_work_at_error);
+        }
+
         return errors;
     }
 
@@ -32,6 +42,20 @@ public class ReportValidator {
     private static String _validateContent(String content){
         if(content == null || content.equals("")){
             return "内容を入力してください";
+        }
+        return "";
+    }
+
+    private static String _validateAttendance_at(String attendance_at){
+        if(attendance_at == null || attendance_at.equals("")){
+            return "出勤時間を入力してください。";
+        }
+        return "";
+    }
+
+    private static String _validateLeave_work_at(String leave_work_at){
+        if(leave_work_at == null || leave_work_at.equals("")){
+            return "退勤時間を入力してください。";
         }
         return "";
     }
