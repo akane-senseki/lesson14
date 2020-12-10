@@ -16,6 +16,12 @@
 <label for="name">氏名</label><br/>
 <c:out value="${sessionScope.login_employee.name}"/><br/><br/>
 
+<label for="attendance_at">出勤時間</label><br/>
+<input type="time" name="attendance_at" value="${report.attendance_at}"/><br/><br/>
+
+<label for="leave_work_at">退勤時間</label><br/>
+<input type="time" name="leave_work_at" value="${report.leave_work_at}"/><br/><br/>
+
 <label for="title">タイトル</label><br/>
 <input type="text" name="title" value="${report.title}"/><br/><br/>
 

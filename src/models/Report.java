@@ -52,6 +52,29 @@ public class Report {
     @Column(name = "title",length = 255 ,nullable = false)
     private String title;
 
+
+    @Column(name="attendance_at",nullable=false)
+    private String attendance_at;
+
+    public String getAttendance_at() {
+        return attendance_at;
+    }
+
+    public void setAttendance_at(String attendance_at) {
+        this.attendance_at = attendance_at;
+    }
+
+    public String getLeave_work_at() {
+        return leave_work_at;
+    }
+
+    public void setLeave_work_at(String leave_work_at) {
+        this.leave_work_at = leave_work_at;
+    }
+
+    @Column(name="leave_work_at",nullable=false)
+    private String leave_work_at ;
+
     @Lob        //改行もデータベースに保存される
     @Column(name = "content",nullable = false)
     private String content;
