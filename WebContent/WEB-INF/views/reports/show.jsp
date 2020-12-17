@@ -20,7 +20,9 @@
                         </tr>
                         <tr>
                             <th>内容</th>
-                            <td><pre><c:out value="${report.content}" /></pre></td>
+                            <td><pre>
+                                    <c:out value="${report.content}" />
+                                </pre></td>
                         </tr>
                         <tr>
                             <th>登録日時</th>
@@ -42,11 +44,59 @@
                         </tr>
                     </tbody>
                 </table>
-                <c:if test="${sessionScope.login_employee.id == report.employee.id}">
-                    <p>
-                        <a href="<c:url value="/reports/edit?id=${report.id}"/>">この日報を編集する</a>
-                    </p>
-                </c:if>
+                <c:choose>
+                    <c:when
+                        test="${sessionScope.login_employee.id == report.employee.id}">
+                        <p>
+                            <a href="<c:url value="/reports/edit?id=${report.id}"/>">この日報を編集する</a>
+                        </p>
+                        <p>いいね：${like_count}</p>
+                    </c:when>
+                    <c:otherwise>
+                        <c:choose>
+                            <c:when test="${ like_or == 0 }">
+                                <form name="like" method="POST"
+                                    action="<c:url value='/like_add'/>">
+                                    <input type="button" class="add_like" value="いいね"
+                                        onclick="return mySubmit('like', '<c:url value='/like_add'/>', 'POST');" />
+                                    <input type="hidden" name="_token" value="${_token}" /> <input
+                                        type="hidden" name="id" value="${report.id}" />
+                                </form>
+                                <script type="text/javascript">
+                            function mySubmit(formName, url, method) {
+                                // サブミットするフォームを取得
+                                var f = document.forms[formName];
+
+                                f.method = method; // method(GET or POST)を設定する
+                                f.action = url; // action(遷移先URL)を設定する
+                                f.submit(); // submit する
+                                return true;
+                            }
+                        </script>
+                            </c:when>
+                            <c:otherwise>
+                                <form name="like" method="POST"
+                                    action="<c:url value='/like_add'/>">
+                                    <input type="button" class="add_like" value="いいね済"
+                                        onclick="return mySubmit('like', '<c:url value='/like_add'/>', 'POST');" />
+                                    <input type="hidden" name="_token" value="${_token}" /> <input
+                                        type="hidden" name="id" value="${report.id}" />
+                                </form>
+                                <script type="text/javascript">
+                            function mySubmit(formName, url, method) {
+                                // サブミットするフォームを取得
+                                var f = document.forms[formName];
+
+                                f.method = method; // method(GET or POST)を設定する
+                                f.action = url; // action(遷移先URL)を設定する
+                                f.submit(); // submit する
+                                return true;
+                            }
+                        </script>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:otherwise>
+                </c:choose>
             </c:when>
             <c:otherwise>
                 <h2>お探しのデータは見つかりませんでした。</h2>
