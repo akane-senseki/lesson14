@@ -77,7 +77,7 @@
                             <c:otherwise>
                                 <form name="like" method="POST"
                                     action="<c:url value='/like_add'/>">
-                                    <input type="button" class="add_like" value="いいね済"
+                                    <input type="button" class="off_like" value="いいね"
                                         onclick="return mySubmit('like', '<c:url value='/like_add'/>', 'POST');" />
                                     <input type="hidden" name="_token" value="${_token}" /> <input
                                         type="hidden" name="id" value="${report.id}" />
