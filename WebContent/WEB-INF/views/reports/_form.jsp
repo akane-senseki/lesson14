@@ -1,32 +1,73 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:if test="${errors != null}">
     <div id="flush_error">
-        入力内容にエラーがあります。<br/>
+        入力内容にエラーがあります。<br />
         <c:forEach var="error" items="${errors}">
-            ・<c:out value="${error}"/><br/>
+            ・<c:out value="${error}" />
+            <br />
         </c:forEach>
     </div>
 </c:if>
-<label for="report_date">日付</label><br/>
-<input type="date" name="report_date" value="<fmt:formatDate value="${report.report_date}" pattern="yyyy-MM-dd"/>"/>
-<br/><br/>
+<label for="report_date">日付</label>
+<br />
+<input type="date" name="report_date"
+    value="<fmt:formatDate value="${report.report_date}" pattern="yyyy-MM-dd"/>" />
+<br />
+<br />
 
-<label for="name">氏名</label><br/>
-<c:out value="${sessionScope.login_employee.name}"/><br/><br/>
+<label for="name">氏名</label>
+<br />
+<c:out value="${sessionScope.login_employee.name}" />
+<br />
+<br />
+<div class="form_container">
+    <div class="form_item">
+        <label for="attendance_at">出勤時間</label><br /> <input type="time"
+            name="attendance_at" value="${report.attendance_at}" /><br />
+    </div>
+    <div class="form_item">
+        <p id="check_attendance_at">出勤時間を入力してください</p>
+    </div>
+</div>
+<br />
+<label for="leave_work_at">退勤時間</label>
+<br />
+<input type="time" name="leave_work_at" value="${report.leave_work_at}" />
+<br />
+<br />
 
-<label for="attendance_at">出勤時間</label><br/>
-<input type="time" name="attendance_at" value="${report.attendance_at}"/><br/><br/>
-
-<label for="leave_work_at">退勤時間</label><br/>
-<input type="time" name="leave_work_at" value="${report.leave_work_at}"/><br/><br/>
-
-<label for="title">タイトル</label><br/>
-<input type="text" name="title" value="${report.title}"/><br/><br/>
+<label for="title">タイトル</label>
+<br />
+<input type="text" name="title" value="${report.title}" />
+<br />
+<br />
 
 <label for="content">内容</label>
-<textarea name="content" rows="10" cols="50">${report.content}</textarea><br/><br/>
+<textarea name="content" rows="10" cols="50">${report.content}</textarea>
+<br />
+<br />
 
-<input type="hidden" name="_token" value="${_token}"/>
-<button type="submit">投稿</button>
+<input type="hidden" name="_token" value="${_token}" />
+<button type="submit" onclick="return check();">投稿</button>
+<script>
+    function check() {
+        let flag = 0;
+        if(form.title.value == ""){
+            flag = 1;
+
+        }
+
+        if (flag == 1) {
+            alert("入力内容を確認してください");
+            return false;
+        } else {
+            if (confirm("この内容で投稿しますか？")) {
+                // document.form[0].submit();
+                return true;
+            }
+        }
+    }
+</script>

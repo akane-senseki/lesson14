@@ -198,3 +198,13 @@ h3 {
 .off_like:active{
     background:#c92a52;
 }
+
+.form_container{
+    display:flex;
+}
+.form_item{
+    margin-right:30px;
+}
+#check_attendance_at{
+    display:none;
+}
