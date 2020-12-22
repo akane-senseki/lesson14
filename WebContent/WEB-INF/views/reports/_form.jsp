@@ -25,48 +25,87 @@
 <br />
 <div class="form_container">
     <div class="form_item">
-        <label for="attendance_at">出勤時間</label><br /> <input type="time"
+        <label for="attendance_at">出勤時間</label> <br /> <input type="time"
             name="attendance_at" value="${report.attendance_at}" /><br />
     </div>
-    <div class="form_item">
-        <p id="check_attendance_at">出勤時間を入力してください</p>
+    <div class="form_item" id="check_attendance_at">
+        <p class="check">出勤時間を入力してください</p>
     </div>
 </div>
 <br />
-<label for="leave_work_at">退勤時間</label>
-<br />
-<input type="time" name="leave_work_at" value="${report.leave_work_at}" />
-<br />
-<br />
-
-<label for="title">タイトル</label>
-<br />
-<input type="text" name="title" value="${report.title}" />
-<br />
-<br />
-
-<label for="content">内容</label>
-<textarea name="content" rows="10" cols="50">${report.content}</textarea>
+<div class="form_container">
+    <div class="form_item">
+        <label for="leave_work_at">退勤時間</label> <br /> <input type="time"
+            name="leave_work_at" value="${report.leave_work_at}" />
+    </div>
+    <div class="form_item" id="check_leave_work_at">
+        <p class="check">退勤時間を入力してください</p>
+    </div>
+</div>
 <br />
 <br />
-
+<div class="form_container">
+    <div class="form_item">
+        <label for="title">タイトル</label> <br /> <input type="text"
+            name="title" value="${report.title}" />
+    </div>
+    <div class="form_item" id="check_title">
+        <p class="check">タイトルを入力してください</p>
+    </div>
+</div>
+<br />
+<br />
+<div class="form_container">
+    <div class="form_item">
+        <label for="content">内容</label>
+        <textarea name="content" rows="10" cols="50">${report.content}</textarea>
+    </div>
+    <div class="form_item" id="check_content">
+        <p class="check">内容を入力してください</p>
+    </div>
+</div>
+<br />
+<br />
 <input type="hidden" name="_token" value="${_token}" />
 <button type="submit" onclick="return check();">投稿</button>
 <script>
     function check() {
         let flag = 0;
-        if(form.title.value == ""){
+        if (form.attendance_at.value == "") {  //出勤時間の確認
             flag = 1;
+            document.getElementById("check_attendance_at").style.display = "block";
+        } else {
+            document.getElementById("check_attendance_at").style.display = "none";
+        }
+        if (form.leave_work_at.value == "") {  //退勤時間の確認
+            flag = 1;
+            document.getElementById("check_leave_work_at").style.display = "block";
+        } else {
+            document.getElementById("check_leave_work_at").style.display = "none";
+        }
 
+        if (form.title.value == "") {  //タイトルの確認
+            flag = 1;
+            document.getElementById("check_title").style.display = "block";
+        } else {
+            document.getElementById("check_title").style.display = "none";
+        }
+
+        if (form.content.value == "") {  //内容の確認
+            flag = 1;
+            document.getElementById("check_content").style.display = "block";
+        } else {
+            document.getElementById("check_content").style.display = "none";
         }
 
         if (flag == 1) {
-            alert("入力内容を確認してください");
+           // alert("入力内容を確認してください");
             return false;
         } else {
             if (confirm("この内容で投稿しますか？")) {
-                // document.form[0].submit();
-                return true;
+                document.form[0].submit();
+            } else {
+                return false;
             }
         }
     }

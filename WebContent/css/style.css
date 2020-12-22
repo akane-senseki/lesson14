@@ -175,14 +175,15 @@ h3 {
     padding: 3px 5px;
     margin-top: 10px;
 }
+
 .add_like:hover {
     background: #aaa;
 }
+
 .add_like:active {
     background: #555;
-    border:none;
+    border: none;
 }
-
 
 .off_like {
     background: #e73562;
@@ -192,19 +193,42 @@ h3 {
     padding: 3px 5px;
     margin-top: 10px;
 }
-.off_like:hover{
-    background:#f189a3;
-}
-.off_like:active{
-    background:#c92a52;
+
+.off_like:hover {
+    background: #f189a3;
 }
 
-.form_container{
-    display:flex;
+.off_like:active {
+    background: #c92a52;
 }
-.form_item{
-    margin-right:30px;
+
+.form_container {
+    display: flex;
 }
-#check_attendance_at{
-    display:none;
+
+.form_item {
+    margin-right: 30px;
+}
+
+#check_attendance_at {
+    display: none;
+}
+
+#check_leave_work_at {
+    display: none;
+}
+
+#check_title {
+    display: none;
+}
+
+#check_content {
+    display: none;
+}
+
+.check {
+    color: #721c24;
+    background-color: #f8d7da;
+    padding:0 15px;
+    border-radius: 15px;
 }
